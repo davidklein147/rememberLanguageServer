@@ -18,8 +18,8 @@ const con = mysql.createConnection({
 //     database: "rememberlanguage",
 // })
 
-// con.connect(err => {
-//     console.log("con " + err);
-// })
+con.connect(err => {
+    console.log("con " + err);
+})
 
 module.exports = con;
