@@ -12,7 +12,7 @@ function envContro() {
     }
 
     function getPartOfSpeech(req, res) {
-        console.log("prrt");
+        console.log("part");
         con.query(`select * from PART_OF_SPEECH`, (err, results) => {
             if(err){
                 return res.status(500).send()
