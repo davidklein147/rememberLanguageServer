@@ -13,6 +13,7 @@ require('./queries/createQuery')();
 app.use('/auth', require("./routers/authRouter"));
 app.use('/api/', require("./controllers/tokenController"))
 app.use('/api/env/', require("./routers/envRouter"))
+app.use('/api/inputs/', require("./routers/inputRouter"))
 
 app.get('/get', (req, res) => {
     
