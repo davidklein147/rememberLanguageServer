@@ -44,3 +44,10 @@ function replaceAll(originalString, find, replace) {
     return ret;
 };
 
+function errors(res ,err,mas){
+    console.log(err);
+    return res.status(500).send(mas)
+};
+
+module.exports = errors
+

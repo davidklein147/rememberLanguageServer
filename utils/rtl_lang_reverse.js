@@ -12,3 +12,18 @@ var smartReverse = function(str) {                     // Reverse a string consi
         ;
 }
 module.exports = smartReverse;
+
+function objToInsertQuery(tableName, obj, keysNum) {
+    var keys = Object.keys(obj);
+    var values = Object.values(obj);
+    var query = `insert into ${tableName} (`
+    keysNum.forEach(num => {
+        query += keys[num-1]
+    });
+    query += `) values (`;
+    keysNum.forEach(num => {
+        query += values[num-1]
+    });
+    query += `)`;
+    return query;
+}

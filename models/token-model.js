@@ -1,6 +1,6 @@
 const enCoding = require('../utils/token')
 var split = '=!='
-var liveTime = 2 * 60 * 60 * 1000
+var liveTime = 7 * 60 * 60 * 1000
 
 function token(isNew, token, id, name, email) {
     if (isNew) {
