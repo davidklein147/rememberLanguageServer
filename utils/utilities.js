@@ -1,7 +1,7 @@
 
 function arrayToTable(tName, arr, addObj) {
-    if(addObj) {
-        arr = arr.map(item => { return {...item, ...addObj}});
+    if (addObj) {
+        arr = arr.map(item => { return { ...item, ...addObj } });
     }
     var allKeys = {};
     for (const item of arr) {
@@ -25,7 +25,7 @@ function arrayToTable(tName, arr, addObj) {
     }
     allValues = allValues.slice(0, -2);
     let qString = 'INSERT INTO ' + tName + `(${allKeys}) VALUES${allValues}`;
-    qString =  qString.split('\'NULL\'').join("DEFAULT");
+    qString = qString.split('\'NULL\'').join("DEFAULT");
     console.log(qString);
     return qString;
 }
@@ -44,10 +44,22 @@ function replaceAll(originalString, find, replace) {
     return ret;
 };
 
-function errors(res ,err,mas){
-    console.log(err);
-    return res.status(500).send(mas)
-};
+function utilities() {
+    function setDateToSqlFormat(date) {
+        return `'${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}'`;
+    }
 
-module.exports = errors
+    function errors(res, err, mas) {
+        console.log(err);
+        return res.status(500).send(mas)
+    };
+
+    return {
+        setRepetitionDate: setDateToSqlFormat,
+        errors: errors
+    }
+}
+
+
+module.exports = utilities
 

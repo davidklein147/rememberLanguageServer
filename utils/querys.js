@@ -1,19 +1,41 @@
 function querys() {
 
-    function objToInsertQuery(tableName, obj, keysNum) {
-        var keys = Object.keys(obj);
-        var values = Object.values(obj);
-        var query = `'insert into ${tableName} (`
-        keysNum.forEach(num => {
-            query += `${keys[num - 1]},`
+    function objToInsertQuery(tableName, obj, keyNumArr) {
+        const keyArr = () => {
+            var arr = [];
+            var index = 0;
+            for (const key in obj) {
+                index++
+                if(keyNumArr.find(num => num ===index)){
+                    arr.push(key)
+                    console.log("key  " +key);
+                }
+            }
+            console.log( "ddd " + arr);
+            return arr;
+        }
+        const valueArr = ()=>{
+            var arr = [];
+            for (const value of keys) {
+                obj[value] ? arr.push(obj[value]):arr.push(null)  
+            }
+            console.log("values  " + arr);
+            return arr
+        }
+        var keys = !keyNumArr? Object.keys(obj): keyArr();
+        var values =  valueArr() ; 
+        var query = `insert into ${tableName} (`
+        keys.forEach(key => {
+            query += `${key},`
         });
         query = query.slice(0, query.length - 1);
         query += `) values (`;
-        keysNum.forEach(num => {
-            query += `${typeof (values[num - 1]) === "number" ? values[num - 1] : "'" + values[num - 1] + "'"},`
+        values.forEach(value => {
+            query += `${!Number.isNaN(+value) ? value : "'" + value + "'"},`
         });
         query = query.slice(0, query.length - 1);
-        query += `)'`;
+        query += `)`;
+        console.log(query);
         return query;
     }
 
