@@ -17,6 +17,8 @@ function repetitionContro() {
         where 
          a.UserId = ${req.params.id} and
          b.SourceId = a.Id and c.TranslateWordId = b.Id and
+         c.RepetitionDate in (
+             select max(repetitionDate) from REPETITION_DATA  group by TranslateWordId) and
          c.RepetitionDate <= ${utilities.setRepetitionDate(
              //new Date(new Date().setDate(new Date().getDate() +1))
              new Date()
