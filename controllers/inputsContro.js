@@ -50,7 +50,7 @@ function inputsContro() {
                                             }
 
                                             con.commit()
-                                            res.status(201).send("sucssus" + newSourctInsert, newTrans , newData)
+                                            res.status(201).send( {newSourctInsert, newTrans , newData})
 
                                         })
                                 })
