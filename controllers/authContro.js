@@ -1,19 +1,17 @@
 const con = require("../utils/sql");
 const enCoding = require("../utils/crypto");
 const token = require("../models/token-model");
+const querys = require("../utils/querys");
+
 
 function authcolle() {
     function logup(req, res) {
-        console.log("logup " + req.body);
+        console.log( req.body);
         if (!req.body) {
             return res.status(400).send();
         }
-        enCoding.cipher(req.body.password)
-        //let query1 = 'insert into USERS set';
-        con.query(
-            //  query1, req.body,
-            `insert into USERS (name, Email, password)
-        values('${req.body.name}', '${req.body.email}', '${enCoding.cipher(req.body.password)}')`,
+        req.body.password = enCoding.cipher(req.body.password)
+        con.query(querys.objToInsertQuery("USERS", req.body),
             (err, newInsert) => {
                 if (err) {
                     console.log(err);
@@ -30,8 +28,6 @@ function authcolle() {
             return res.status(400).send({ mas: "missig details" });
         }
         con.query(`select * from USERS where Email  = "${req.body.email}"`,
-            //con.query(`select * from USERS where Email = "davidklein147@gmail.com"`,
-            //con.query(`select * from USERS`,
             (err, results) => {
                 if(!results[0]){
                     return res.status(401).send({ mas: "email or passwors is incorrect" });
@@ -48,9 +44,7 @@ function authcolle() {
                 let newToken = new token(true, null, result.Id, result.Name, result.Email);
                 res.status(200).send({ token: newToken.token , userId: result.Id});
             })
-
     }
-
     return {
         logup,
         login

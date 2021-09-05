@@ -24,7 +24,9 @@ function inputsContro() {
                     if (result) {
                         console.log(result);
                         req.body.translateWord.sourceId = result.Id;// JSON.parse(JSON.stringify(result)).Id;
-                    }
+                        /**here need to add a functionulity what to do if there is already this word */
+                    } 
+                    console.log(result);
                     con.query(querys.objToInsertQuery("SOURCE_WORDS", req.body.sourceWord, [1, 2, 3]),
                         (err2, newSourctInsert) => {
                             if (err2) {

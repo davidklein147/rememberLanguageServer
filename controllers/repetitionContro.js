@@ -7,7 +7,7 @@ function repetitionContro() {
   function dailyRepetitionList(req, res) {
     if (!req.params) {
       return res.status(400).send({ mas: "missing details" });
-    }
+    } 
     con.query(
               `select
                 a.SourceWord,
