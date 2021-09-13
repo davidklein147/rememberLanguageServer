@@ -8,10 +8,8 @@ function querys() {
                 index++
                 if(keyNumArr.find(num => num ===index)){
                     arr.push(key)
-                    console.log("key  " +key);
                 }
             }
-            console.log( "ddd " + arr);
             return arr;
         }
         const valueArr = ()=>{
@@ -19,7 +17,6 @@ function querys() {
             for (const value of keys) {
                 obj[value] ? arr.push(obj[value]):arr.push(null)  
             }
-            console.log("values  " + arr);
             return arr
         }
         var keys = !keyNumArr? Object.keys(obj): keyArr();

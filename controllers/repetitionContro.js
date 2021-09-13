@@ -1,6 +1,6 @@
 const con = require("../utils/sql");
 const revers = require("../utils/rtl_lang_reverse");
-const utilities = require("../utils/utilities")();
+const utilities = require("../utils/utilities");
 const querys = require("../utils/querys");
 
 function repetitionContro() {
