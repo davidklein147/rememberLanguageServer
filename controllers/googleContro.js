@@ -2,7 +2,7 @@ const con = require("../utils/sql");
 
 const axios = require('axios');
 const url = `https://translation.googleapis.com/language/translate/v2/?key=`;
-const key = process.env.GOOGLE_TRANSLATE_API_KEY;
+const key = process.env.GOOGLE_KEY || `AIzaSyBgFSkJq7wSCq9-90QIgv3Xpo26dQumluA`
 
 let data; 
 const googleTranslateHendler = async (body)=>{
