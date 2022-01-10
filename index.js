@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
 const con = require('./utils/sql');
+const port = 8090// process.env.PORT || `AIzaSyB5B1qXnahdx4NC9mNB52TRrxjK-WnBgB0`
 
-app.listen(8090, function () {
-    console.log('server is up');
+
+app.listen(port, function () {
+    console.log('server is up', port);
 });
 
 app.use(require("cors")());
@@ -16,6 +18,10 @@ app.use('/api/', require("./controllers/tokenController"))
 app.use('/api/env/', require("./routers/envRouter"))
 app.use('/api/inputs/', require("./routers/inputRouter"))
 app.use('/api/repetition/', require("./routers/repetiRouter"))
+const tra = require("./controllers/googleContro").translate
+console.log(tra);
+
+app.post('/api/google/translate', require("./controllers/googleContro").translate)
 
 app.get('/get', (req, res) => {
 
