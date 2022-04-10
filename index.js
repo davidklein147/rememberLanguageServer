@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
 const con = require('./utils/sql');
-const port = 8090// process.env.PORT || `AIzaSyB5B1qXnahdx4NC9mNB52TRrxjK-WnBgB0`
+require('dotenv').config()
+console.log(process.env
+);
+const port = process.env.SERVER_PORT //|| `AIzaSyB5B1qXnahdx4NC9mNB52TRrxjK-WnBgB0`
 
 
 app.listen(port, function () {
@@ -46,6 +49,10 @@ app.get('/gett', (req, res) => {
             console.log(JSON.parse(JSON.stringify(result)));
             res.status(200).send(result);
         })
+})
+
+app.get('/get', (req, res) => {
+    res.status(200).send("result");y
 })
 
 
