@@ -2,9 +2,9 @@
   "name": "rememberlanguageserver",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "my-sql": "^1.2.15",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.16"
   }
 }

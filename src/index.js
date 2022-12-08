@@ -1,14 +1,12 @@
 const express = require("express");
 const app = express();
 const con = require('./utils/sql');
-require('dotenv').config()
-console.log(process.env
-);
-const port = process.env.SERVER_PORT //|| `AIzaSyB5B1qXnahdx4NC9mNB52TRrxjK-WnBgB0`
+// require('dotenv').config()
+const port = 8090//process.env.SERVER_PORT //|| `AIzaSyB5B1qXnahdx4NC9mNB52TRrxjK-WnBgB0`
 
 
 app.listen(port, function () {
-    console.log('server is up', port);
+    console.log('server is up', port)
 });
 
 app.use(require("cors")());
@@ -26,22 +24,22 @@ console.log(tra);
 
 app.post('/api/google/translate', require("./controllers/googleContro").translate)
 
-app.get('/get', (req, res) => {
+// app.get('/get', (req, res) => {
 
-    console.log("get");
-    con.query('select * from TRANSLATE_WORDS', (err, result) => {
-        if (err) {
-            return res.status(400).send(err);
-        }
-        res.status(200).send(result);
-    })
-})
+//     console.log("get");
+//     con.query('select * from TRANSLATE_WORDS', (err, result) => {
+//         if (err) {
+//             return res.status(400).send(err);
+//         }
+//         res.status(200).send(result);
+//     })
+// })
 
 app.get('/gett', (req, res) => {
     console.log("gett");
 
     con.query(`select SOURCE_WORDS.SourceWord, TranslateWord , CreationDate from TRANSLATE_WORDS 
-    inner JOIN SOURCE_WORDS ON TRANSLATE_WORDS.SourceId = SOURCE_WORDS.Id and UserId = 1`,
+    inner JOIN SOURCE_WORDS ON TRANSLATE_WORDS.SourceId = SOURCE_WORDS.Id and UserId = 2`,
         (err, result) => {
             if (err) {
                 return res.status(400).send(err);
@@ -52,7 +50,7 @@ app.get('/gett', (req, res) => {
 })
 
 app.get('/get', (req, res) => {
-    res.status(200).send("result");y
+    res.status(200).send("result");
 })
 
 
